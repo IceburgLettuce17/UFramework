@@ -49,9 +49,9 @@ namespace UFramework
 			if (Config.debug)
 			{
 				Debug.Log("EnterUPS();");
-				promotions.SetActive(true);
-				LoadGames();
-			}			
+			}	
+			promotions.SetActive(true);
+			LoadGames();
 		}
 		
 		public void LoadGames()
