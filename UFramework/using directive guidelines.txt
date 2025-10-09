@@ -1,0 +1,17 @@
+- Top: System directives
+Example:
+using System;
+using System.Diagnostics;
+using System.Linq;
+
+- Middle: UFramework Directives
+Example:
+using UFramework;
+using UFramework.Save;
+using UFramework.Encryption;
+
+- Bottom: Unity directives
+Example:
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
