@@ -19,6 +19,8 @@ namespace UFramework
 		
 		public int currentGame, prevGame;
 		
+		public GameObject[] disabledGames;
+		
 		void Start()
 		{
 			Initialize("LOADING...");
@@ -64,7 +66,14 @@ namespace UFramework
 		
 		public void GameClick(string url)
 		{
-			Application.OpenURL(url);			
+			if (games[currentGame].gameObject != disabledGames[currentGame])
+			{
+				Application.OpenURL(url);			
+			}
+			else if (Config.debug)
+			{
+				Debug.Log("Game is disabled");
+			}
 		}
 		
 		public void Destroy(){Object.Destroy(this.gameObject);}
