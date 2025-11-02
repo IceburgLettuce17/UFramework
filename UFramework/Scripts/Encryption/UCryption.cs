@@ -7,22 +7,22 @@ namespace UFramework.Encryption
 	{
 		public static int checksumEx = 9, checksum = -1413816336;
 		
-		public static int EncryptInt_Method1(int value) 
+		public static int DecryptInt(int value) 
 		{
 			return (value ^= checksum) >> checksumEx | value << 32 - checksumEx;
 		}
 		
-		public static int EncryptInt_Method2(int value) 
+		public static int EncryptInt(int value) 
 		{
 			return (value << checksumEx | value >> 32 - checksumEx) ^ checksum;
 		}
 		
-		public static long EncryptLong_Method1(long value) 
+		public static long EncryptLong(long value) 
 		{
 			return (value << checksumEx | value >> 64 - checksumEx) ^ (long) checksum;
 		}
 
-		public static long EncryptLong_Method2(long value) 
+		public static long DecryptLong(long value) 
 		{
 			return value ^ (long) checksum >> checksumEx | value ^ (long) checksum << 64 - checksumEx;
 		}

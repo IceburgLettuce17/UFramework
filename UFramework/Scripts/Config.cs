@@ -2,8 +2,13 @@
 {
 	public static class Config
 	{
+		// Enables debug prints and assertions
 		public static bool debug = true;
 		
-		public static string version = "1.0.0p2";
+		// This doesn't do anything yet
+		public static string version = "1.0.0p3";
+		
+		// Enables UPS
+		public static bool enableUPS = true;
 	}
 }

@@ -1,0 +1,1 @@
+﻿public class Property { public string key, value; }

@@ -1,0 +1,10 @@
+{
+    "name": "UFramework.Examples",
+    "references": [
+        "UFramework.Save",
+        "UFramework.Encryption",
+        "UFramework"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": []
+}

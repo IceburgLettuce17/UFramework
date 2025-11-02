@@ -11,13 +11,13 @@ public class EncryptionUc : MonoBehaviour
 		{
 			case 1:
 			{
-				value = UCryption.EncryptInt_Method1(value);
+				value = UCryption.EncryptInt(value);
 				print(value);
 				break;
 			}
 			case 2:
 			{
-				value = UCryption.EncryptInt_Method2(value);
+				value = UCryption.DecryptInt(value);
 				print(value);
 				break;
 			}
@@ -51,13 +51,13 @@ public class EncryptionUc : MonoBehaviour
 		{
 			case 1:
 			{
-				value = UCryption.EncryptLong_Method1(value);
+				value = UCryption.EncryptLong(value);
 				print(value);
 				break;
 			}
 			case 2:
 			{
-				value = UCryption.EncryptLong_Method2(value);
+				value = UCryption.DecryptLong(value);
 				print(value);
 				break;
 			}

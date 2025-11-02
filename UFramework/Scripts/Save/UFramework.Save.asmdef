@@ -1,0 +1,8 @@
+{
+    "name": "UFramework.Save",
+    "references": [
+        "UFramework"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": []
+}

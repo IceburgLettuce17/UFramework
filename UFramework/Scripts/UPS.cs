@@ -5,21 +5,42 @@ using UnityEngine.UI;
 
 namespace UFramework
 {
-	// UPS means UFramework Promotion System by the way
+	/***********************************************/
+	/*	UPS - The UFrameworkPromotionSystem Library*/
+	/***********************************************/
+
 	public class UPS : MonoBehaviour 
 	{
-		public Sprite game1thumb, game2thumb, game3thumb;
+		//public Sprite game1thumb, game2thumb, game3thumb;
 		
-		public Image[] games;
+		[Header("Games")]
+		/*************** GAMES *******************/
+		/**/ public Sprite[] gameThumbs;	   /**/
+		/**/ public Image[] games;			   /**/
+		/**/ public GameObject[] disabledGames;/**/
+		/**/ public string[] gameNames;		   /**/
+		/**/public int currentGame, prevGame;  /**/
+		/*****************************************/
 		
-		public Text loadingMessageText;
+		// This is also used for downloading a game
+		public Text loadingMessageText, hotGamesText;
 		
-		public GameObject loadingScreen;
-		public GameObject promotions;
+		[Header("Screens")]
+		/*************** SCREENS ****************/
+		/**/ public GameObject loadingScreen; /**/
+		/**/ public GameObject promotions;    /**/
+		/****************************************/
 		
-		public int currentGame, prevGame;
 		
-		public GameObject[] disabledGames;
+		
+		public const string UPS_VERSION = "1.3";
+		
+		[Header("Settings")]
+		/********* CONFIG ***********************/
+		/**/ public bool useLoadThumbs = true;/**/ 
+		/**/ public string creatorName = "";  /**/
+		/**/ public int nbOfGames = 2;  /**/
+		/****************************************/
 		
 		void Start()
 		{
@@ -34,6 +55,7 @@ namespace UFramework
 			}
 			loadingMessageText.text = loadingMessage;
 			StartCoroutine(LoadingHandler());
+			hotGamesText.text = "MORE GAMES FROM " + creatorName;
 		}
 		
 		public IEnumerator LoadingHandler()
@@ -59,9 +81,31 @@ namespace UFramework
 		public void LoadGames()
 		{
 			if (games == null) return;
-			games[0].sprite = game1thumb;
+			/*games[0].sprite = game1thumb;
 			games[1].sprite = game2thumb;
-			games[2].sprite = game3thumb;
+			games[2].sprite = game3thumb;*/
+			for (int i = 0; i < games.Length; i++)
+			{
+				//if (gameThumbs[i] == null)
+				//{
+				//	print("gameThumbs[i] != null == FALSE! Please make sure to set vars in gameThumbs aswell");
+				//	return;
+				//}
+				if (useLoadThumbs)
+				{
+					games[i].sprite = FindThumbnail(gameNames[i]);
+				}
+				else
+				{					
+					games[i].sprite = gameThumbs[i];
+				}
+			}
+		}
+		
+		// ADDED //
+		public Sprite FindThumbnail(string name)
+		{
+			return Resources.Load<Sprite>("UPSThumbs/" + name);
 		}
 		
 		public void GameClick(string url)
@@ -80,7 +124,7 @@ namespace UFramework
 		
 		public void ShuffleGame()
 		{
-			if (currentGame < 2)
+			if (currentGame < nbOfGames)
 			{
 				currentGame++;
 			}
@@ -88,21 +132,28 @@ namespace UFramework
 			{
 				currentGame = 0;
 			}
-			if (currentGame > 2)
+			if (currentGame > nbOfGames)
 			{
 				currentGame = 0;
-				prevGame = 2;
+				prevGame = nbOfGames;
 			}
-			if (currentGame - 1 != -1) 
+			if (currentGame - 1 >= 0) 
 			{
 				prevGame = currentGame - 1;
 			}
 			else
 			{
-				prevGame = 2;
+				prevGame = nbOfGames;
 			}
 			games[prevGame].gameObject.SetActive(false);
-			games[currentGame].gameObject.SetActive(true);
+			if (currentGame > nbOfGames)
+			{
+				currentGame = 0;
+				games[prevGame].gameObject.SetActive(true);
+			}
+			else
+			{
+			games[currentGame].gameObject.SetActive(true);}
 		}
 	}
 }
